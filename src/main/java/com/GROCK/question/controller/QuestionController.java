@@ -28,14 +28,16 @@ public class QuestionController {
 
     @PostMapping("/")
     public String postQuestion(QuestionPostDto questionPostDto){
-        questionService.createQuestion(mapper.)
+        questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
         return null;
     }
 
     @GetMapping("/")
     public String getQeustion(Model model,
                                @RequestParam String type, @RequestParam String qId){
-        List<Long> qIds = Arrays.stream(qId.split(","))
+        List<Long> qIds;
+        if (qId==null) qIds = List.of();
+        else qIds = Arrays.stream(qId.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
 
