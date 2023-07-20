@@ -2,39 +2,35 @@ package com.GROCK.question.controller;
 
 import com.GROCK.question.dto.QuestionPostDto;
 import com.GROCK.question.entity.Question;
-import com.GROCK.question.mapper.QuestionMapper;
 import com.GROCK.question.service.QuestionService;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/question")
 public class QuestionController {
     private final QuestionService questionService;
-    private final QuestionMapper mapper;
 
-    public QuestionController(QuestionService questionService, QuestionMapper mapper) {
+    public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
-        this.mapper = mapper;
     }
 
-    @PostMapping("/")
-    public String postQuestion(QuestionPostDto questionPostDto){
-        questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
-        return null;
+    @PostMapping
+    public ResponseEntity postQuestion(QuestionPostDto questionPostDto) throws IOException {
+        questionService.createQuestion(questionPostDto);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String getQeustion(Model model,
-                               @RequestParam String type, @RequestParam String qId){
+                               @RequestParam String type, @RequestParam(required = false) String qId){
         List<Long> qIds;
         if (qId==null) qIds = List.of();
         else qIds = Arrays.stream(qId.split(","))
