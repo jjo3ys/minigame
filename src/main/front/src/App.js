@@ -83,20 +83,25 @@ function App() {
           <div className='modal'>
             <div className='sub'>
               !!!전체 화면 플레이를 권장합니다!!!<br/>
+              !! 안그러면 버튼 위치가..!!<br/><br/>
+
               게임에는 인물&대사<br/>
               두 가지 유형이 있습니다.<br/>
               인물의 경우 화면에 인물사진이 나오며<br/>
-              인물의 이름을 말하시면 됩니다.<br/>
+              인물의 이름을 말하시면 됩니다.<br/><br/>
+
               대사의 경우 화면에 영화나 드라마에서<br/>
               한 장면이 나오며 해당 장면에서<br/>
               배우가 말하는 대사를 말하시면 됩니다.<br/><br/>
-              bgm은 On/Off만 지원합니다.<br/>
+
+              bgm은 On/Off만 지원합니다!!<br/>
               게임 시작 후 A 버튼은 Answer을 의미하며 답을 공개합니다.<br/>
-              N 버튼은 Next를 의미하며 다음 문제를 가져옵니다.<br/><br/><br/>
-              모든 이미지나 대사에 대한 저작권은 원작자에 있으며<br/>
-              그 외 모든 요소는 제작자가 만든 것을 밝힙니다.<br/><br/><br/>
+              N 버튼은 Next를 의미하며 다음 문제를 가져옵니다.<br/><br/>
               
-              Designed By ys'J
+              모든 이미지나 대사에 대한 저작권은 원작자에 있으며<br/>
+              그 외 모든 요소는 제작자가 만든 것을 밝힙니다.<br/><br/>
+              
+              Designed & Programed By ys J
               <button className='closeButton' onClick={helpButton}>X</button>
             </div>
           </div>

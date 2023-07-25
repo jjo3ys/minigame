@@ -15,18 +15,35 @@ function Quiz() {
     const {isPlaying, bgmPlaying} = useBgm();
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const [quizIdList, setQuizIdList] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [answer, setAnswer] = useState('');
     const [getAnswer, setGetAnswer] = useState('');
     const [count, setCount] = useState('');
 
     const [btnDisable, setBtnDisable] = useState(false);
-
+    const [showModal, setShowModal] = useState(false);
+    const [showImg, setShowImg] = useState(false);
     const fetchQuiz = async () => {
-        const response = {
-            imageUrl:'/quizImage/170648208914200.png',
-            answer:'아이유'
-        }
+        if (quizIdList.length===0){
+            axios.get('/question')
+            .then((response) => {
+                setImageUrl('/images/'+response.data.imgName);
+                setAnswer(response.data.answer);
+                setQuizIdList(String(response.data.id));
+            })
+            .catch((error) => setShowModal(true));
+        } else {
+            axios.get('/question?qId='+quizIdList)
+            .then((response) => {
+                setImageUrl('/images/'+response.data.imgName);
+                setAnswer(response.data.answer);
+                setQuizIdList(quizIdList+','+response.data.id);
+            })
+            .catch((error) => setShowModal(true));
+        }  
+
         setCount(3);
         await sleep(1000);
         setCount(2);
@@ -34,8 +51,7 @@ function Quiz() {
         setCount(1);
         await sleep(1000);
         setCount('');
-        setImageUrl(response.imageUrl);
-        setAnswer(response.answer)
+        setShowImg(true);
     }
 
     useEffect(() =>{
@@ -51,6 +67,7 @@ function Quiz() {
 
     const answerButton = () => {
         answerSound.play();
+        setShowImg(false)
         setImageUrl('');
         setBtnDisable(false);
         setGetAnswer(answer);
@@ -79,7 +96,7 @@ function Quiz() {
             <div className='gameMachine' style={divStyle}>
             <br/>Jo's ARCADE
                 <div className='display' style={displayStyle}>   
-                    {imageUrl && <img className='quizImg' src={imageUrl} alt="이미지" />}
+                    {showImg && imageUrl && <img className='quizImg' src={imageUrl} alt="이미지" />}
                     <div className='countDiv'>
                         {count}  
                     </div>   
@@ -95,6 +112,14 @@ function Quiz() {
                     <button className='nextQButton' onClick={nextQButton} disabled={btnDisable}>N</button>     
                 </div>     
             </div>
+            {showModal && (
+            <div className='modal'>
+                끝 <br/>
+                <div className='modal_sub'>
+                    Designed & Programed By ys J
+                </div>
+            </div>
+            )}
               
         </div>
     );
