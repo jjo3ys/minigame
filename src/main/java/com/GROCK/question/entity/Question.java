@@ -18,9 +18,6 @@ public class Question extends BaseEntity {
     private Long questionId;
 
     @Column(length = 255, nullable = false)
-    private String type;
-
-    @Column(length = 255, nullable = false)
     private String answer;
 
     @Column(length = 255, nullable = false)

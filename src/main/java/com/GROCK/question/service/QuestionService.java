@@ -53,9 +53,9 @@ public class QuestionService {
         return questionRespository.save(question);
     }
 
-    public Question findQuestion(List<Long> qIds, String type){
+    public Question findQuestion(List<Long> qIds){
         System.out.println(qIds.size());
-        Optional<Question> question = questionRespository.findTop1ByNotInList(qIds, type);
+        Optional<Question> question = questionRespository.findTop1ByNotInList(qIds);
         return question.orElseThrow(() ->
                 new BusinessLogicExecption(ExceptionCode.QUESTION_NOT_FOUND));
     }

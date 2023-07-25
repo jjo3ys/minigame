@@ -1,8 +1,11 @@
 package com.GROCK.question.controller;
 
 import com.GROCK.question.dto.QuestionPostDto;
+import com.GROCK.question.dto.QuestionResponseDto;
 import com.GROCK.question.entity.Question;
+import com.GROCK.question.mapper.QuestionMapper;
 import com.GROCK.question.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -17,9 +20,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/question")
 public class QuestionController {
     private final QuestionService questionService;
+    @Autowired
+    private final QuestionMapper mapper;
 
-    public QuestionController(QuestionService questionService) {
+    public QuestionController(QuestionService questionService, QuestionMapper mapper) {
         this.questionService = questionService;
+        this.mapper = mapper;
     }
 
     @PostMapping
@@ -29,16 +35,15 @@ public class QuestionController {
     }
 
     @GetMapping
-    public String getQeustion(Model model,
-                               @RequestParam String type, @RequestParam(required = false) String qId){
+    public ResponseEntity getQeustion(@RequestParam(required = false) String qId){
+        System.out.println(qId);
         List<Long> qIds;
         if (qId==null) qIds = List.of();
         else qIds = Arrays.stream(qId.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
-
-        Question question = questionService.findQuestion(qIds, type);
-        model.addAttribute("quesition", question);
-        return "question";
+        System.out.println(qIds.size());
+        QuestionResponseDto responseDto = mapper.questionToQuestionResponseDto(questionService.findQuestion(qIds));
+        return new ResponseEntity(responseDto, HttpStatus.OK);
     }
 }
