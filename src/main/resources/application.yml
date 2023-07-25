@@ -16,6 +16,7 @@ spring:
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+
 logging:
   level:
     org:
@@ -28,4 +29,4 @@ server:
       force-response: true
 static:
   basePath: ${user.dir}
-  imagePath: /src/main/front/public/quizImage/
+  imagePath: /src/main/contents/images/

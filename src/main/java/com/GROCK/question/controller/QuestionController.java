@@ -36,14 +36,13 @@ public class QuestionController {
 
     @GetMapping
     public ResponseEntity getQeustion(@RequestParam(required = false) String qId){
-        System.out.println(qId);
         List<Long> qIds;
         if (qId==null) qIds = List.of();
         else qIds = Arrays.stream(qId.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
-        System.out.println(qIds.size());
         QuestionResponseDto responseDto = mapper.questionToQuestionResponseDto(questionService.findQuestion(qIds));
+        System.out.println("Here!! :"+responseDto.getAnswer());
         return new ResponseEntity(responseDto, HttpStatus.OK);
     }
 }
