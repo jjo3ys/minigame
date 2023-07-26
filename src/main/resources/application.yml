@@ -1,3 +1,4 @@
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,9 +21,7 @@ logging:
         orm:
           jpa: DEBUG
 server:
-  servlet:
-    encoding:
-      force-response: true
+  address: 0.0.0.0
 static:
   basePath: ${user.dir}
   imagePath: /src/main/contents/images/
