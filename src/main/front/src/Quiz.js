@@ -119,12 +119,12 @@ function Quiz() {
                     <button className='bgmButton' onClick={bgmPlaying} style={buttonStyle}>
                         {isPlaying ? 'bgm Off' : 'bgm On'}
                     </button>
-                    <button className='answerButton' onClick={answerButton} disabled={!btnDisable} style={buttonStyle2}>A</button>
-                    <button className='nextQButton' onClick={nextQButton} disabled={btnDisable} style={buttonStyle2}>N</button>     
+                    <button className='answerButton' onClick={answerButton} disabled={!btnDisable} style={buttonStyle2}>Ans</button>
+                    <button className='nextQButton' onClick={nextQButton} disabled={btnDisable} style={buttonStyle2}>Next</button>     
                 </div>     
             </div>
             {showModal && (
-            <div className='modal'>
+            <div className='modal_main'>
                 끝 <br/>
                 <div className='modal_sub'>
                     Designed & Programed By ys J

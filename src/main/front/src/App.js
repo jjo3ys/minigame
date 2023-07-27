@@ -80,7 +80,7 @@ function App() {
           </button>
         </div>   
         {showModal && (
-          <div className='modal'>
+          <div className='popUp'>
             <div className='sub'>
               !!!전체 화면 플레이를 권장합니다!!!<br/>
               !! 안그러면 버튼 위치가..!!<br/><br/>
