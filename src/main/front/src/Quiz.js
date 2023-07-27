@@ -89,7 +89,18 @@ function Quiz() {
     const btnDivStyle = {
         width: windowHeight<windowWidth/1942*1365? (windowHeight*3/7)/2*3+'px': windowWidth*3/7+'px',
     }
-
+    const buttonStyle = {
+        fontSize: windowWidth/100+'px',
+        width: windowWidth/10+'px',
+        height: windowWidth/30+'px',
+        borderRadius: windowWidth/120+'px'
+    };
+    const buttonStyle2 = {
+        fontSize: windowWidth/100+'px',
+        width: windowWidth/20+'px',
+        height: windowWidth/30+'px',
+        borderRadius: windowWidth/120+'px'
+    };
     return (
         <div className='main'>
                 
@@ -105,11 +116,11 @@ function Quiz() {
                     </div>          
                 </div>   
                 <div className='buttonDiv' style={btnDivStyle}>
-                    <button className='bgmButton' onClick={bgmPlaying}>
+                    <button className='bgmButton' onClick={bgmPlaying} style={buttonStyle}>
                         {isPlaying ? 'bgm Off' : 'bgm On'}
                     </button>
-                    <button className='answerButton' onClick={answerButton} disabled={!btnDisable}>A</button>
-                    <button className='nextQButton' onClick={nextQButton} disabled={btnDisable}>N</button>     
+                    <button className='answerButton' onClick={answerButton} disabled={!btnDisable} style={buttonStyle2}>A</button>
+                    <button className='nextQButton' onClick={nextQButton} disabled={btnDisable} style={buttonStyle2}>N</button>     
                 </div>     
             </div>
             {showModal && (

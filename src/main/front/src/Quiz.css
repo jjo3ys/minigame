@@ -57,24 +57,24 @@ img{
 .buttonDiv{
     /* border: 3px solid red; */
     position: absolute;
-    top: 70%;
+    top: 67%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .bgmButton{
-    margin-right: 10%;
-    margin-left: 5%;
+    position: absolute;
+    left: 20%;
 }
 .answerButton{
-    width: 80px;
-    margin-left: 30%;
+    position: absolute;
+    left: 60%;
     border-radius: 30% 30% 25% 25%;
 }
 
 .nextQButton{
-    margin-left: 5%;
-    width: 80px;
+    position: absolute;
+    left: 80%;
     border-radius: 30% 30% 25% 25%;
 }
 
@@ -102,5 +102,5 @@ img{
 }
 
 button:active {
-    position: relative;
+    position: absolute;
 }
