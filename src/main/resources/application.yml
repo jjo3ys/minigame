@@ -2,9 +2,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://
-    username:
-    password:
+    url: ${dbUrl}
+    username: ${dbUsername}
+    password: ${dbPassword}
   jpa:
     hibernate:
       ddl-auto: update
@@ -14,12 +14,6 @@ spring:
     init:
       data-locations: classpath*:db/h2/data.sql
 
-logging:
-  level:
-    org:
-      springframework:
-        orm:
-          jpa: DEBUG
 server:
   address: 0.0.0.0
 static:
