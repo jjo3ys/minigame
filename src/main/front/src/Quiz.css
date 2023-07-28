@@ -18,6 +18,11 @@
     background-position: contain;
     background-size: cover;
     background-repeat: no-repeat;
+    
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 .display{
     /* border: 3px solid rgb(255, 251, 0); */
@@ -26,7 +31,7 @@
     height: 45%; */
 
     position: absolute;
-    top: 41%;
+    top: 45%;
     left:50%;
     transform: translate(-50%, -50%);
 }
@@ -57,7 +62,7 @@ img{
 .buttonDiv{
     /* border: 3px solid red; */
     position: absolute;
-    top: 67%;
+    top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -78,7 +83,7 @@ img{
     border-radius: 30% 30% 25% 25%;
 }
 
-.modal{
+.modal_main{
     background-color: black;
     position: absolute;
     top:50%;
