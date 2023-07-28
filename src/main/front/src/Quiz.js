@@ -52,6 +52,7 @@ function Quiz() {
         await sleep(1000);
         setCount('');
         setShowImg(true);
+        setBtnDisable(true);
     }
 
     useEffect(() =>{
@@ -74,8 +75,7 @@ function Quiz() {
     }
     const nextQButton = () => {
         nextQSound.play();    
-        setGetAnswer('');
-        setBtnDisable(true);
+        setGetAnswer(''); 
         fetchQuiz();
     }
     const divStyle = {
