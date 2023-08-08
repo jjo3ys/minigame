@@ -37,7 +37,7 @@ public class QuestionController {
     @GetMapping
     public ResponseEntity getQeustion(@RequestParam(required = false) String qId){
         List<Long> qIds;
-        if (qId==null) qIds = List.of();
+        if (qId==null) qIds = List.of(0L);
         else qIds = Arrays.stream(qId.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
