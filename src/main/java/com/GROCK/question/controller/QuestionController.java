@@ -2,13 +2,11 @@ package com.GROCK.question.controller;
 
 import com.GROCK.question.dto.QuestionPostDto;
 import com.GROCK.question.dto.QuestionResponseDto;
-import com.GROCK.question.entity.Question;
 import com.GROCK.question.mapper.QuestionMapper;
 import com.GROCK.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

@@ -4,7 +4,6 @@ import com.GROCK.audit.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -20,7 +19,7 @@ public class Question extends BaseEntity {
     @Column(length = 255, nullable = false)
     private String answer;
 
-    @Column(length = 255, nullable = false)
+    @Column(length = 255, nullable = true)
     private String imgName;
 
     @Column(nullable = false)
