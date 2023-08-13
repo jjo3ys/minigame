@@ -12,27 +12,47 @@ const startSound = new Audio("/soundEffect/buttonEffect.wav");
 function App() {
   const {isPlaying, bgmPlaying} = useBgm();
 
-  const [hello, setHello] = useState('')
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [showModal, setShowModal] = useState(false);
+  const [showTypeModal, setShowTypeModal] = useState(false);
   
   const navigate = useNavigate();
 
   const startButton = () => {
     startSound.play();
-    navigate('/quiz');
+    setShowTypeModal(true);
+    // navigate('/quiz');
+  }
+  const wordButton = () =>{
+    startSound.play();
+    setShowTypeModal(false);
+    navigate('/quiz', {
+        state:{
+          type:'word'
+        }
+      }
+    );
+  }
+  const charImgButton = () =>{
+    startSound.play();
+    setShowTypeModal(false);
+    navigate('/quiz', {
+      state:{
+        type:'image'
+      }
+    }
+  );
   }
 
   const helpButton = () => {
     helpButtonSound.play()
     setShowModal(!showModal);
   }
+  const typeModalExitButton = () => {
+    helpButtonSound.play()
+    setShowTypeModal(false);
+  }
   
-  useEffect(() => {
-    axios.get('/main')
-        .then(response => setHello(response.data))
-        .catch(error => console.log(error))    
-  }, []);
   useEffect(() =>{
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -79,24 +99,41 @@ function App() {
             Help?
           </button>
         </div>   
+        {showTypeModal && (
+          <div className='popUp'>
+            <div className='startSub'>
+              <div className='buttonDiv'>
+                <button className='wordButton' onClick={wordButton} style={buttonStyle}>
+                  이어말하기
+                </button>
+                <button className='charImgButton' onClick={charImgButton} style={buttonStyle}>
+                  인물 퀴즈
+                </button>
+              </div>
+              <button className='closeButton' onClick={typeModalExitButton}>X</button>
+              문제 유형 중 하나를 고르세요!!
+            </div>
+          </div>
+        )}
         {showModal && (
           <div className='popUp'>
             <div className='sub'>
               !!!전체 화면 플레이를 권장합니다!!!<br/>
               !! 안그러면 버튼 위치가..!!<br/><br/>
 
-              게임에는 인물&대사<br/>
+              게임에는 인물& 네 글자 이어말하기<br/>
               두 가지 유형이 있습니다.<br/>
               인물의 경우 화면에 인물사진이 나오며<br/>
               인물의 이름을 말하시면 됩니다.<br/><br/>
 
-              대사의 경우 화면에 영화나 드라마에서<br/>
-              한 장면이 나오며 해당 장면에서<br/>
-              배우가 말하는 대사를 말하시면 됩니다.<br/><br/>
+              이어말하기의 경우 화면에 정답 네 글자중<br/>
+              앞의 두 글자가 나오며<br/>
+              뒤 두 글자를 말하시면 됩니다.<br/><br/>
 
               bgm은 On/Off만 지원합니다!!<br/>
               게임 시작 후 A 버튼은 Answer을 의미하며 답을 공개합니다.<br/>
-              N 버튼은 Next를 의미하며 다음 문제를 가져옵니다.<br/><br/>
+              Img 버튼은 인물 퀴즈를 의미하며 다음 인물 사진을 가져옵니다.<br/>
+              4len 버튼은 네 글자 이어말하기 퀴즈를 의미하며 다음 글자를 가져옵니다.<br/><br/>
               
               모든 이미지나 대사에 대한 저작권은 원작자에 있으며<br/>
               그 외 모든 요소는 제작자가 만든 것을 밝힙니다.<br/><br/>
@@ -106,6 +143,7 @@ function App() {
             </div>
           </div>
         )}
+        
       </body>
   );
 }

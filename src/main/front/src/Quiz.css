@@ -59,6 +59,15 @@ img{
     font-family: '8bit kr';
     font-size: 40px;
 }
+.wordText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: '8bit kr';
+    font-size: 40px;
+}
 .buttonDiv{
     /* border: 3px solid red; */
     position: absolute;

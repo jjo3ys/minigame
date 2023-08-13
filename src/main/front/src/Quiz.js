@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import { useBgm } from './BgmContext';
 
 import './Quiz.css';
@@ -12,12 +13,16 @@ const nextQSound = new Audio('/soundEffect/newQuiz.wav');
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 function Quiz() {
+    const location = useLocation();
+    const type = location.state.type;
     const {isPlaying, bgmPlaying} = useBgm();
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+
     const [quizIdList, setQuizIdList] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [getWord, setGetWord] = useState('');
     const [answer, setAnswer] = useState('');
     const [getAnswer, setGetAnswer] = useState('');
     const [count, setCount] = useState('');
@@ -25,23 +30,33 @@ function Quiz() {
     const [btnDisable, setBtnDisable] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [showImg, setShowImg] = useState(false);
+    let word;
+
     const fetchQuiz = async () => {
         if (quizIdList.length===0){
-            axios.get('/question')
-            .then((response) => {
-                setImageUrl('/images/'+response.data.imgName);
+            axios.get('/question?type='+type)
+            .then(response => {
                 setAnswer(response.data.answer);
+                if (type=='image') setImageUrl('/images/'+response.data.imgName);
+                else word = String(response.data.answer).substring(0, 2);
                 setQuizIdList(String(response.data.id));
             })
-            .catch((error) => setShowModal(true));
+            .catch((error) => {
+                setShowModal(true);
+                console.log(error);
+            });
         } else {
-            axios.get('/question?qId='+quizIdList)
+            axios.get('/question?qId='+quizIdList+'&type='+type)
             .then((response) => {
-                setImageUrl('/images/'+response.data.imgName);
                 setAnswer(response.data.answer);
+                if (type=='image') setImageUrl('/images/'+response.data.imgName);
+                else word = String(response.data.answer).substring(0, 2);
                 setQuizIdList(quizIdList+','+response.data.id);
             })
-            .catch((error) => setShowModal(true));
+            .catch((error) => {
+                setShowModal(true);
+                console.log(error);
+            });
         }  
 
         setCount(3);
@@ -51,8 +66,6 @@ function Quiz() {
         setCount(1);
         await sleep(1000);
         setCount('');
-        setShowImg(true);
-        setBtnDisable(true);
     }
 
     useEffect(() =>{
@@ -68,15 +81,18 @@ function Quiz() {
 
     const answerButton = () => {
         answerSound.play();
-        setShowImg(false)
-        setImageUrl('');
+        setShowImg(false);
+        setGetWord('');
         setBtnDisable(false);
         setGetAnswer(answer);
     }
-    const nextQButton = () => {
+    const nextQButton = async () => {
         nextQSound.play();    
         setGetAnswer(''); 
-        fetchQuiz();
+        await fetchQuiz();
+        setShowImg(true);
+        setBtnDisable(true);
+        setGetWord(word);
     }
     const divStyle = {
         height: windowHeight<windowWidth/1942*1365? windowHeight*9/10+'px': (windowWidth*9/10)/1942*1365+'px',
@@ -111,6 +127,9 @@ function Quiz() {
                     <div className='countDiv'>
                         {count}  
                     </div>   
+                    <div className='wordText'>
+                        {getWord}
+                    </div>
                     <div className='answerText'>
                         {getAnswer}  
                     </div>          
