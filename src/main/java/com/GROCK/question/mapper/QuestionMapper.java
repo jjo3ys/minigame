@@ -10,6 +10,7 @@ public class QuestionMapper {
     public Question questionPostDtoToQuestion(QuestionPostDto questionPostDto){
         Question question = new Question();
         question.setAnswer(questionPostDto.getAnswer());
+        question.setType(questionPostDto.getType());
         return question;
     };
 

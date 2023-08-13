@@ -34,17 +34,17 @@ public class QuestionService {
     }
 
     public Question createQuestion(QuestionPostDto questionPostDto) throws IOException {
-        MultipartFile multipartFile = questionPostDto.getFile();
-        String contentType = multipartFile.getContentType();
-
-        if (ObjectUtils.isEmpty(contentType)) return null;
-        String originalFileExtension = getFileExtension(contentType);
-
-        String new_file_name = System.nanoTime() + originalFileExtension;
-
-        multipartFile.transferTo(new File(basePath+imagePath+new_file_name));
         Question question = mapper.questionPostDtoToQuestion(questionPostDto);
-        question.setImgName(new_file_name);
+        if(questionPostDto.getType().equals("image")) {
+            MultipartFile multipartFile = questionPostDto.getFile();
+            String contentType = multipartFile.getContentType();
+
+            if (ObjectUtils.isEmpty(contentType)) return null;
+            String originalFileExtension = getFileExtension(contentType);
+            String new_file_name = System.nanoTime() + originalFileExtension;
+            multipartFile.transferTo(new File(basePath + imagePath + new_file_name));
+            question.setImgName(new_file_name);
+        }
         return questionRespository.save(question);
     }
 
@@ -53,9 +53,8 @@ public class QuestionService {
         return questionRespository.save(question);
     }
 
-    public Question findQuestion(List<Long> qIds){
-        System.out.println(qIds.size());
-        Optional<Question> question = questionRespository.findTop1ByNotInList(qIds);
+    public Question findQuestion(List<Long> qIds, String type){
+        Optional<Question> question = questionRespository.findTop1ByNotInList(qIds, type);
         return question.orElseThrow(() ->
                 new BusinessLogicExecption(ExceptionCode.QUESTION_NOT_FOUND));
     }

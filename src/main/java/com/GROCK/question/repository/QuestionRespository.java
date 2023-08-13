@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface QuestionRespository extends JpaRepository<Question, Long> {
 //    @Query(value="SELECT q FROM Question q WHERE q.questionId NOT IN :qIds ORDER BY RAND()")
 //    Question findTop1ByNotInList(@Param("qIds") List<Long> qIds);
-    @Query(value="SELECT * FROM question WHERE question.question_id NOT IN :qIds ORDER BY RAND() LIMIT 1", nativeQuery = true)
-    Optional<Question> findTop1ByNotInList(@Param("qIds") List<Long> qIds);
+    @Query(value="SELECT * FROM question WHERE question.type = :type AND question.question_id NOT IN :qIds ORDER BY RAND() LIMIT 1", nativeQuery = true)
+    Optional<Question> findTop1ByNotInList(@Param("qIds") List<Long> qIds, @Param("type") String type);
 //    Question findTopByOrderByIdNotIn(List<Long> ids);
 }

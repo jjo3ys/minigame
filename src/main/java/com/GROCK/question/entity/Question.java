@@ -22,4 +22,7 @@ public class Question extends BaseEntity {
 
     @Column(length = 255, nullable = false)
     private String imgName;
+
+    @Column(nullable = false)
+    private String type;
 }

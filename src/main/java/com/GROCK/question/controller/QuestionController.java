@@ -31,18 +31,17 @@ public class QuestionController {
     @PostMapping
     public ResponseEntity postQuestion(QuestionPostDto questionPostDto) throws IOException {
         questionService.createQuestion(questionPostDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity getQeustion(@RequestParam(required = false) String qId){
+    public ResponseEntity getQeustion(@RequestParam(required = false) String qId, @RequestParam String type){
         List<Long> qIds;
         if (qId==null) qIds = List.of(0L);
         else qIds = Arrays.stream(qId.split(","))
                 .map(Long::parseLong)
                 .collect(Collectors.toList());
-        QuestionResponseDto responseDto = mapper.questionToQuestionResponseDto(questionService.findQuestion(qIds));
-        System.out.println("Here!! :"+responseDto.getAnswer());
-        return new ResponseEntity(responseDto, HttpStatus.OK);
+        QuestionResponseDto responseDto = mapper.questionToQuestionResponseDto(questionService.findQuestion(qIds, type));
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 }
