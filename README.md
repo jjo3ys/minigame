@@ -28,7 +28,7 @@
 
 
 
-## ✨ [서비스 메뉴얼](https://github.com/codestates-seb/seb45_main_022/files/12685723/Code.Status.2.pdf)
+## ✨ [페이지 구성](https://github.com/codestates-seb/seb45_main_022/files/12685723/Code.Status.2.pdf)
 
 | 1. 메인 페이지           |
 |---------------------|
