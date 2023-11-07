@@ -4,7 +4,6 @@ import com.GROCK.question.dto.QuestionPostDto;
 import com.GROCK.question.dto.QuestionResponseDto;
 import com.GROCK.question.mapper.QuestionMapper;
 import com.GROCK.question.service.QuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/question")
 public class QuestionController {
     private final QuestionService questionService;
-    @Autowired
     private final QuestionMapper mapper;
 
     public QuestionController(QuestionService questionService, QuestionMapper mapper) {
