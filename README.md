@@ -1,7 +1,7 @@
 <div align='center'>
 <h1> 🎮 Joe's Arcade 🎮 </h1>
 
-![제목을-입력해주세요_-006](https://github.com/codestates-seb/seb45_main_022/assets/85780501/25caf1dd-a7a0-4506-bc9c-7b25b47466d2)
+![img.png](readme_img/main.png)
 
 <h3> 🕹️ Joe's Arcade는 모 프로그램의 컨텐츠에 착안하여 만든 웹 게임이며,<br>
 인물 퀴즈, 네글자 이어말하기가 있습니다.</h3>
@@ -14,7 +14,7 @@
 <br>
 
 
-## 🛠️ Technical Skills
+## 🛠️ Stacks
 
 <img src="https://img.shields.io/badge/-Java-05122A?style=flat&logo=java"/>
 <img src="https://img.shields.io/badge/-Springboot-05122A?style=flat&logo=Springboot"/>
