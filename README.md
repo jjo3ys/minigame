@@ -16,14 +16,14 @@
 
 ## 🛠️ Stacks
 
-<img src="https://img.shields.io/badge/-Java-05122A?style=flat&logo=java"/>
-<img src="https://img.shields.io/badge/-Springboot-05122A?style=flat&logo=Springboot"/>
+![](https://img.shields.io/badge/-Java-05122A?style=flat&logo=java)
+![](https://img.shields.io/badge/-Springboot-05122A?style=flat&logo=Springboot)
 <br>
-<img src="https://img.shields.io/badge/-node.Js-05122A?style=flat&logo=Node.js"/>
-<img src="https://img.shields.io/badge/-react-05122A?style=flat&logo=React"/>
+![](https://img.shields.io/badge/-node.Js-05122A?style=flat&logo=Node.js)
+![](https://img.shields.io/badge/-react-05122A?style=flat&logo=React)
 <br>
-<img src="https://img.shields.io/badge/-aws-05122A?style=flat&logo=amazonaws"/>
-<img src="https://img.shields.io/badge/-mysql-05122A?style=flat&logo=mysql"/>
+![](https://img.shields.io/badge/-aws-05122A?style=flat&logo=amazonaws)
+![](https://img.shields.io/badge/-mysql-05122A?style=flat&logo=mysql)
 <br>
 
 
