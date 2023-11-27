@@ -50,7 +50,7 @@
 
 
 ## ✨ 기능 시연 영상
-![bandicam 2023-11-07 17-05-38-824.gif](..%2F..%2F..%2FUsers%2Fjjo3y%2FDownloads%2Fbandicam%202023-11-07%2017-05-38-824.gif)
+![](readme_img/play_video.gif)
 
 
 ## ✨ 구현 내용
